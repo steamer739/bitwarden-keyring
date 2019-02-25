@@ -88,10 +88,10 @@ def bw(*args, session=None):
     while True:
         try:
             result = subprocess.run(
-                cli_args, stdout=subprocess.PIPE, check=True
+                cli_args, stdout=subprocess.PIPE, check=True, encoding="utf-8"
             ).stdout.strip()
         except subprocess.CalledProcessError as exc:
-            output = exc.stdout.decode("utf-8")
+            output = exc.stdout
             if wrong_password(output):
                 print(output)
                 continue
